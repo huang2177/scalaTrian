@@ -10,29 +10,35 @@ package com.huang.scalaTrian
 
 object ApplyTest {
   def main(args: Array[String]): Unit = {
-    ApplyApp(2).test("4")
+    ApplyApp("s").test("4")
   }
 }
 
-class ApplyApp() {
+class ApplyApp(s: String) {
   var count = 0
   var name = "s"
+
+  def this(a: Int) = this("")
+
+  def this(a: Int, string: String) = this(a)
+
 
   def test(count: String): Unit = {
     count match {
       case "2" => println("good!")
       case "3" => println("bad!")
-      case _ if name == "s" => println("just so so!!!")
+      case _ if name == s => println("just so so!!!")
       case _ => println("nothing to match!")
     }
   }
 }
 
 object ApplyApp {
+
   println("object enter...")
   println("object leave...")
 
-  def apply(s: Int): ApplyApp = {
-    new ApplyApp()
+  def apply(s: String): ApplyApp = {
+    new ApplyApp(2)
   }
 }

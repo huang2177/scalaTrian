@@ -5,7 +5,7 @@ import java.io.File
 import scala.io.Source
 
 
-object train01 extends App {
+object train01 extends  App {
 
   implicit class RichFile(file: File) {
     def read(): String = {
@@ -24,7 +24,6 @@ object train01 extends App {
     .toList
     .sortBy(-_._2)
     .foreach(println)
-
 }
 
 

@@ -3,15 +3,16 @@ package com.huang.scalaTrian
 object train04 {
   implicit val msg: String = "哈哈"
 
-  implicit def fDouble2Int(b: Double): Int = {
-    println("---fDouble2Int--")
-    b.toInt
-  }
+  //  implicit def fDouble2Int(b: Double): Int = {
+  //    println("---fDouble2Int--")
+  //    b.toInt
+  //  }
 
-  implicit val double2Int: Double => Int = (b: Double) => {
-    println("---double2Int--")
-    b.toInt
-  }
+//  implicit val double2Int: Double => Int = (d: Double) => {
+//    d.toInt
+//  }
+
+  implicit val double2Int2 = (a: Double) => a.toInt
 
   /**
     * 会在当前的上下文中寻找一个 implicit String类型的变量，若没有，就会报错
@@ -35,7 +36,7 @@ object train04 {
       * 此时编译器会在当前上下文寻找一个能把double变为int的隐式转换
       * 默认寻找顺序： 函数（double2Int） ->方法（fDouble2Int）
       */
-    val age: Int = 20.5
+    val age: Int = 123.0
     println(age)
   }
 }

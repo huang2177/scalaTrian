@@ -1,8 +1,8 @@
 package com.huang.scalaTrian.actor
 
 import akka.actor.{ActorSystem, Props}
-
 import akka.actor.{Actor, ActorRef}
+import com.huang.scalaTrian.Scala01
 
 /**
   * 定义玩家1
@@ -43,15 +43,19 @@ class player2Actor extends Actor {
 }
 
 
-object ChineseChess extends App {
-  // 创建 actorSystem的工厂，用来生产ActorRef对象！
-  private val ChineseChessActorSystem = ActorSystem("Chinese-chess")
-  /**
-    * 通过actorSystem创建ActorRef
-    */
-  private val p2 = ChineseChessActorSystem.actorOf(Props[player2Actor], "player2") //创建player2Actor对象
-  private val p1 = ChineseChessActorSystem.actorOf(Props(new player1Actor(p2)), "player1") //创建player1Actor对象
+object ChineseChess {
 
-  p2 ! "start"
-  p1 ! "start"
+  def main(args: Array[String]): Unit = {
+
+    // 创建 actorSystem的工厂，用来生产ActorRef对象！
+    val ChineseChessActorSystem = ActorSystem("Chinese-chess")
+    /**
+      * 通过actorSystem创建ActorRef
+      */
+    val p2 = ChineseChessActorSystem.actorOf(Props[player2Actor], "player2") //创建player2Actor对象
+    val p1 = ChineseChessActorSystem.actorOf(Props(new player1Actor(p2)), "player1") //创建player1Actor对象
+
+    p2 ! "start"
+    p1 ! "start"
+  }
 }
